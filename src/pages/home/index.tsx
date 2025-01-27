@@ -4,6 +4,7 @@ import Marquee from "../../components/corporate-bar";
 import Cards from "../../components/card";
 import Carousel from "../../components/carousel";
 import CompentionSection from "../../components/competition/index.";
+import Footer from "../../components/footer";
 const HomePage = () => {
   return (
     <div>
@@ -90,6 +91,7 @@ const HomePage = () => {
      <Marquee />
      <Carousel />
      <CompentionSection />
+     <Footer />
      </div>
   );
 };

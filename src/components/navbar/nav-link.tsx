@@ -1,6 +1,6 @@
 import { Button, Link } from '@mui/material';
 import { ReactNode } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface CustomLinkProps {
   href: string;
@@ -8,11 +8,15 @@ interface CustomLinkProps {
 }
 
 const NavLink: React.FC<CustomLinkProps> = ({ href, children }) => {
-//   const location = useLocation();
-//   const isSelected = location.pathname === href;
+  const navigate = useNavigate();
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    navigate(href);
+  };
 
   return (
-    <Link href={href} underline="none" component="a">
+    <Link underline="none" component="a" onClick={handleClick}>
       <Button
         variant="contained"
         size="small"
@@ -24,7 +28,7 @@ const NavLink: React.FC<CustomLinkProps> = ({ href, children }) => {
           backgroundColor: 'transparent',
           color: 'text.secondary',
           '&:hover': {
-            backgroundColor:'action.hover',
+            backgroundColor: 'action.hover',
           },
         }}
       >

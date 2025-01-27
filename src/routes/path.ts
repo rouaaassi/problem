@@ -1,6 +1,8 @@
 class AppPath {
-    Home = '/';
-    contact ='/';
-    singup='/';
+    main = '/';
+    contact ='/contant';
+    singup='/sing-up';
+    signin='/sing-in'
   }
   export const PATH_APP = new AppPath();
+

@@ -19,12 +19,12 @@ const pages = [
   {
     icon: <Home sx={{ height: 18, width: 18 }} />,
     label: 'Home',
-    href:PATH_APP.Home,
+    href:PATH_APP.main,
   },
   {
     icon: <ArrowDownwardIcon sx={{ height: 18, width: 18 }} />,
-    label: 'Sing up',
-    href: PATH_APP.singup,
+    label: 'Sing in',
+    href: "/sign-in",
   },
   {
     icon: <LocalPhoneIcon sx={{ height: 18, width: 18 }} />,
