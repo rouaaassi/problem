@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getProblems } from '../../api/problems';
 import ProblemCard from '../../components/problem-card';
 import { Typography } from '@mui/material';
 import { ProblemProvider } from '../../context/ProblemContext';
+import DashboardNavbar from '../../components/dashboard-bar';
 
 const Problems = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [problems, setProblems] = useState<any[]>([]);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Problems = () => {
 
   return (
    <ProblemProvider>
+    <DashboardNavbar />
     <div>
       {problems.map((problem) => (
         <ProblemCard
@@ -31,7 +32,7 @@ const Problems = () => {
           onClick={() => { }}
         />
       ))}
-      <Typography sx={{color :'blue'}}>Problems List</Typography>
+      <Typography>Problems List</Typography>
     </div>
     </ProblemProvider>
   );

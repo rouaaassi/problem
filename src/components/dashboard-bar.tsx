@@ -1,17 +1,15 @@
-import React from 'react';
-import { AppBar, Toolbar, Button, Typography } from '@mui/material';
+import { Toolbar, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const DashboardNavbar = () => {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6">App Name</Typography>
-        {/* <Button color="inherit" component={Link} to="/login">Login</Button> */}
-        <Button color="inherit" component={Link} to="/Problems">Problems</Button>
+    <Box position="static" sx={{background:'#86bbf4', marginBottom:'90px'}}>
+      <Toolbar >
+        <Button color="inherit" component={Link} to="/Problems"variant="outlined">Problems</Button>
         <Button color="inherit" component={Link} to="/Solutions">Solutions</Button>
+        <Button color="inherit" component={Link} to="/Solutions">Submit</Button>
       </Toolbar>
-    </AppBar>
+    </Box>
   );
 };
 

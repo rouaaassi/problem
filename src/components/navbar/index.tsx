@@ -5,12 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { Badge } from '@mui/material';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Home } from '@mui/icons-material';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import CustomLink from './nav-link';
@@ -73,17 +70,6 @@ const MainNav: React.FC<MainNavProps> = ({ isDarkMode, toggleTheme }) => {
 
           {/* Icons Section */}
           <Stack direction="row" spacing={2} alignItems="center">
-            <IconButton aria-label="notifications">
-              <Badge color="error" badgeContent="!">
-                <PersonOutlinedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="notifications">
-              <Badge color="error" badgeContent={4}>
-                <EmailOutlinedIcon />
-              </Badge>
-            </IconButton>
-
             {/* Theme Toggle Button */}
             <IconButton onClick={toggleTheme} color="inherit">
               {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}

@@ -18,11 +18,13 @@ export default function SignUpSide() {
     e.preventDefault();
 
     try {
-      await axios.post('localhost:3000/GraduationProject/secretAPI/signup', formData);
+      await axios.post('http://localhost:3000/GraduationProject/secretAPI/signup', formData);
+      console.log("sbfdzdgn")
 
       setSnackbar({ open: true, message: 'Signed up successfully!', severity: 'success' });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
+      console.log('error')
       setSnackbar({ open: true, message: 'Signup failed. Please try again.', severity: 'error' });
     }
   };
@@ -100,7 +102,9 @@ export default function SignUpSide() {
                 />
                 <Button type="submit" variant="contained" color="primary">
                   Sign Up
+                  
                 </Button>
+              
               </form>
             </SignUpCard>
           </Stack>

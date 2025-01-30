@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
-  name: string;
-  lastLogin: string;
+  username: string;
 }
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<void>;
   logout: () => void;
   token: string | null;
   user: User | null;
@@ -20,14 +20,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
       setIsAuthenticated(true);
-      // استعادة بيانات المستخدم من التوكن أو طلب من API
       const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
+      if (storedUser && storedUser !== "undefined") { 
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
+        } catch (error) {
+          console.error('Failed to parse user data:', error);
+          localStorage.removeItem('user');
+        }
+      } else {
+        setUser(null);
       }
     } else {
       setIsAuthenticated(false);
@@ -35,15 +43,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [token]);
 
-  const login = async (email: string, password: string) => {
+  const login = async (username: string, password: string) => {
     try {
       const response = await axios.post('http://localhost:3000/GraduationProject/login', {
-        email,
+        username,
         password,
       });
 
       const receivedToken = response.data.token;
-      const userInfo = response.data.user; // معلومات المستخدم من API
+      const userInfo = response.data.user;
 
       setToken(receivedToken);
       setUser(userInfo);
@@ -52,9 +60,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('user', JSON.stringify(userInfo));
 
       setIsAuthenticated(true);
+      navigate('/dashboard');
     } catch (error) {
+      navigate('/dashboard');
       console.error('Login failed:', error);
-      throw new Error('فشل تسجيل الدخول. تأكد من البيانات وحاول مرة أخرى.');
+      throw new Error('Login failed, please try again.');
     }
   };
 
@@ -64,6 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    navigate('/');
   };
 
   return (

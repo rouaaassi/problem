@@ -41,7 +41,7 @@ export default function App() {
             ) : (
               <>
                 <MainNav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <div style={{ textAlign: 'center', marginTop: '5px' }}>
                  
                   <Routes>
                     <Route path="/" element={<HomePage />} />

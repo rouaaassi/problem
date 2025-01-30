@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
-import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,9 +10,12 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import ForgotPassword from './forget-password';
-import LogoIcon  from '../../assets/icons/LogoIcon';
-import { Google, Facebook } from '@mui/icons-material';
+import LogoIcon from '../../assets/icons/LogoIcon';
+import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -32,17 +34,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
       'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
   }),
 }));
+
 interface SignInCardProps {
   children?: React.ReactNode;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function SignInCard({ children }: SignInCardProps) {
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
+  const { login } = useAuth();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,43 +54,28 @@ export default function SignInCard({ children }: SignInCardProps) {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
-  const validateInputs = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    let isValid = true;
+    const data = new FormData(event.currentTarget);
+    const username = data.get('username') as string;
+    const password = data.get('password') as string;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
+    try {
+      await login(username, password);
+      setSnackbarMessage('Login successful! Redirecting to dashboard...');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+    } catch (error) {
+      console.error('Error:', error);
+      setSnackbarMessage('Login failed. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
     }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    return isValid;
   };
 
   return (
@@ -111,18 +98,15 @@ export default function SignInCard({ children }: SignInCardProps) {
       >
         <FormControl>
           <TextField
-            error={emailError}
-            helperText={emailErrorMessage}
-            id="email"
-            type="email"
-            name="email"
-            placeholder="your@email.com"
-            autoComplete="email"
+            id="username"
+            type="text"
+            name="username"
+            placeholder="Username"
+            autoComplete="username"
             autoFocus
             required
             fullWidth
             variant="outlined"
-            color={emailError ? 'error' : 'primary'}
           />
         </FormControl>
         <FormControl>
@@ -139,18 +123,14 @@ export default function SignInCard({ children }: SignInCardProps) {
             </Link>
           </Box>
           <TextField
-            error={passwordError}
-            helperText={passwordErrorMessage}
             name="password"
             placeholder="••••••"
             type="password"
             id="password"
             autoComplete="current-password"
-            autoFocus
             required
             fullWidth
             variant="outlined"
-            color={passwordError ? 'error' : 'primary'}
           />
         </FormControl>
         <FormControlLabel
@@ -158,7 +138,7 @@ export default function SignInCard({ children }: SignInCardProps) {
           label="Remember me"
         />
         <ForgotPassword open={open} handleClose={handleClose} />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
+        <Button type="submit" fullWidth variant="contained">
           Sign in
         </Button>
         <Typography sx={{ textAlign: 'center' }}>
@@ -174,25 +154,21 @@ export default function SignInCard({ children }: SignInCardProps) {
           </span>
         </Typography>
       </Box>
-      <Divider>or</Divider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => alert('Sign in with Google')}
-          startIcon={<Google />}
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+          sx={{ width: '100%' }}
         >
-          Sign in with Google
-        </Button>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => alert('Sign in with Facebook')}
-          startIcon={<Facebook />}
-        >
-          Sign in with Facebook
-        </Button>
-      </Box>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Card>
   );
 }
