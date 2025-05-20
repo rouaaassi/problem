@@ -35,11 +35,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   }),
 }));
 
-interface SignInCardProps {
-  children?: React.ReactNode;
-}
-
-export default function SignInCard({ children }: SignInCardProps) {
+export default function SignInCard() {
   const [open, setOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');

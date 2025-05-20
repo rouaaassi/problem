@@ -34,8 +34,8 @@ interface SignInCardProps {
   children?: React.ReactNode;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function SignUpCard({ children }: SignInCardProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-empty-pattern
+export default function SignUpCard({ }: SignInCardProps) {
   const [emailError, setEmailError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSolutions, submitSolution } from '../../api/solutions';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import SolutionForm from '../../components/solution-from';

@@ -7,7 +7,7 @@ interface SolutionFormProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SolutionForm: React.FC<SolutionFormProps> = ({ problemId, onSubmit }) => {
+const SolutionForm: React.FC<SolutionFormProps> = ({ onSubmit }) => {
   const [solution, setSolution] = useState('');
 
   const handleSubmit = () => {

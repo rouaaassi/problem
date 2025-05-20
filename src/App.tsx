@@ -31,7 +31,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <AuthProvider>
         <ProblemProvider>
           <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
@@ -39,10 +39,9 @@ export default function App() {
             {isLoading ? (
               <LoadScreen isLoading={true} />
             ) : (
-              <>
+              <div className="page-transition">
                 <MainNav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-                <div style={{ textAlign: 'center', marginTop: '5px' }}>
-                 
+                <main className="container mx-auto px-4 py-8">
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/sign-in" element={<SignInSide />} />
@@ -52,12 +51,12 @@ export default function App() {
                     <Route path="/Solutions" element={<Solutions problemId={10} />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                   </Routes>
-                </div>
-              </>
+                </main>
+              </div>
             )}
           </ThemeProvider>
         </ProblemProvider>
       </AuthProvider>
-    </>
+    </div>
   );
 }
