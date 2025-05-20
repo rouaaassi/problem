@@ -1,9 +1,7 @@
 import { Box, Button, InputLabel, Stack, TextField, Typography } from '@mui/material';
-import LogoIcon from '../../assets/icons/LogoIcon';
 
 const NewsletterSubscription = () => (
   <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-    <LogoIcon />
     <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
       Join the competition
     </Typography>
