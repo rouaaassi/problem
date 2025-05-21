@@ -41,7 +41,7 @@ export default function App() {
             ) : (
               <div className="page-transition">
                 <MainNav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-                <main className="container mx-auto px-4 py-8">
+                <main className="container">
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/sign-in" element={<SignInSide />} />

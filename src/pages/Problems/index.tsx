@@ -6,6 +6,7 @@ import { ProblemProvider } from '../../context/ProblemContext';
 import DashboardNavbar from '../../components/dashboard-bar';
 
 const Problems = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [problems, setProblems] = useState<any[]>([]);
 
   useEffect(() => {

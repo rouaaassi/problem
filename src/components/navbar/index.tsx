@@ -45,7 +45,7 @@ const MainNav: React.FC<MainNavProps> = ({ isDarkMode, toggleTheme }) => {
       sx={{
         borderBottom: 1,
         borderColor: 'primary.contrastText',
-        backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(211, 231, 249, 0.8)',
         backdropFilter: 'blur(8px)',
         position: 'sticky',
         top: 0,

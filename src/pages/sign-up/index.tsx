@@ -1,33 +1,11 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import SignUpCard from '../../components/signup-card';
-import { Box, Snackbar, Alert, Button } from '@mui/material';
-import axios from 'axios';
+import { Box, Snackbar, Alert } from '@mui/material';
 import { useState } from 'react';
 
 export default function SignUpSide() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      await axios.post('http://localhost:3000/GraduationProject/secretAPI/signup', formData);
-      console.log("sbfdzdgn")
-
-      setSnackbar({ open: true, message: 'Signed up successfully!', severity: 'success' });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      console.log('error')
-      setSnackbar({ open: true, message: 'Signup failed. Please try again.', severity: 'error' });
-    }
-  };
 
   const handleCloseSnackbar = () => {
     setSnackbar({ ...snackbar, open: false });
@@ -82,31 +60,7 @@ export default function SignUpSide() {
               m: 'auto',
             }}
           >
-            <SignUpCard>
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                />
-                <Button type="submit" variant="contained" color="primary">
-                  Sign Up
-                  
-                </Button>
-              
-              </form>
-            </SignUpCard>
+            <SignUpCard />
           </Stack>
         </Stack>
       </Stack>
