@@ -28,7 +28,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <div className={`min-h-screen width-full ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       {/* Hero Section with Background Image */}
       <Box
         sx={{
