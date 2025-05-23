@@ -15,7 +15,7 @@ import Alert from '@mui/material/Alert';
 import ForgotPassword from './forget-password';
 import LogoIcon from '../../assets/icons/LogoIcon';
 import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -64,9 +64,9 @@ export default function SignInCard() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
-  const theme = useTheme();
+  // const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isDarkMode = theme.palette.mode === 'dark';
+  // const isDarkMode = theme.palette.mode === 'dark';
   const navigate = useNavigate();
 
   const handleClickOpen = () => setOpen(true);
