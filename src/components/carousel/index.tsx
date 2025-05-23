@@ -4,19 +4,19 @@ import { useState } from "react";
 
 const carouselItems = [
   {
-    image: "../../../src/assets/images/gettyimages-2186172623-2048x2048.jpg",
+    image: "/gettyimages-2186172623-2048x2048.jpg",
   },
   {
-    image: "../../../src/assets/images/gettyimages-2158058979-2048x2048.jpg",
+    image: "/gettyimages-2158058979-2048x2048.jpg",
   },
   {
-    image: "../../../src/assets/images/gettyimages-1671583770-2048x2048.jpg",
+    image: "/gettyimages-1671583770-2048x2048.jpg",
   },
   {
-    image: "../../../src/assets/images/gettyimages-1411610158-2048x2048.jpg",
+    image: "/gettyimages-1411610158-2048x2048.jpg",
   },
   {
-    image: "../../../src/assets/images/gettyimages-1422787212-2048x2048.jpg",
+    image: "/gettyimages-1422787212-2048x2048.jpg",
   },
 ];
 
