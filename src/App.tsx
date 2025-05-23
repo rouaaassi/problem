@@ -14,6 +14,7 @@ import Problems from './pages/Problems';
 import ProblemDetails from './pages/Problem-details';
 import Solutions from './pages/Solutions';
 import Dashboard from './pages/dashboard';
+import Footer from './components/footer';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -52,6 +53,7 @@ export default function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                   </Routes>
                 </main>
+                <Footer />
               </div>
             )}
           </ThemeProvider>

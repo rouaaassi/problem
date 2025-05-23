@@ -4,7 +4,6 @@ import Marquee from "../../components/corporate-bar";
 import Cards from "../../components/card";
 import Carousel from "../../components/carousel";
 import CompentionSection from "../../components/competition/index.";
-import Footer from "../../components/footer";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -192,7 +191,6 @@ const HomePage = () => {
       <Marquee />
       <Carousel />
       <CompentionSection />
-      <Footer />
     </div>
   );
 };
