@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import LogoIcon from '../../assets/icons/LogoIcon';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
@@ -59,7 +59,7 @@ export default function SignUpCard() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const theme = useTheme();
+  // const theme = useTheme();
   const navigate = useNavigate();
 
   const handleSnackbarClose = () => {
@@ -71,7 +71,7 @@ export default function SignUpCard() {
 
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const username = data.get('username') as string;
+    // const username = data.get('username') as string;
     const email = data.get('email') as string;
     const password = data.get('password') as string;
     const confirmPassword = data.get('confirmPassword') as string;
