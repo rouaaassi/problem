@@ -3,25 +3,25 @@ import { keyframes } from "@emotion/react";
 
 const companies = [
   {
-    image: "../../src/assets/images/logo-ipsum-1.png",
+    image: "/logo-ipsum-1.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-2.png",
+    image: "/logo-ipsum-2.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-3.png",
+    image: "/logo-ipsum-3.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-4.png",
+    image: "/logo-ipsum-4.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-2.png",
+    image: "/logo-ipsum-2.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-3.png",
+    image: "/logo-ipsum-3.png",
   },
   {
-    image: "../../src/assets/images/logo-ipsum-4.png",
+    image: "/logo-ipsum-4.png",
   },
  
 ];
